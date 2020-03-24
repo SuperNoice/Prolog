@@ -150,14 +150,12 @@ count_el(_,[],Count,Count):-!.
 count_el(El,[El|T],Count,Cur):-Cur1 is Cur+1, count_el(El,T,Count,Cur1),!.
 count_el(El,[_|T],Count,Cur):-count_el(El,T,Count,Cur).
 
-min_el_numb([H|T],Num):-min_el_numb(T,Num,H,1,R).
-min_el_numb([],_,_,_):-!.
-min_el_numb([H|T],Num,Min,CurNum):-min(H,Min,MinNew,CurNum,Num,NewNum),CurNum1 is CurNum+1, min_el_numb(T,NewNum,MinNew,CurNum1).
+%Not work
+max_el_numb([H|T],Num):-max_el_numb(T,Num,H,1,1).
+max_el_numb([],Num,_,_,Num):-!.
+max_el_numb([H|T],Num,Max,CurNum,Tmp):-NewCur is CurNum+1, max_el(H,Max, NewCur,Tmp, T, Num).
 
-min(F,S,F,CurNum,_,NewNum):-F<S,NewNum is CurNum,!.
-min(F,S,S,_,NewNum,NewNum):-S<F.
-
-
-
+max_el(F,S,_,_,T,Num):-F>S,!, max_el_numb(T,Num,F,NewCur,Tmp).
+max_el(F,S,S,Tmp,Tmp,T,Num):-S>F, max_el_numb(T,Num,S,Tmp,Tmp).
 
 
