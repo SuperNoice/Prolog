@@ -13,7 +13,7 @@ count_el(El,[_|T],Count,Cur):-count_el(El,T,Count,Cur).
 writeList([]):-!.
 writeList([H|T]):-write(H),write(" "),writeList(T).
 
-main(L):-uniq_el(L,L1), writeList(L1),nl, kolinit(L,L1,L2), writeList(L2).
+main(L):-uniq_el(L,L1), write("Uniq:"), writeList(L1),nl, kolinit(L,L1,L2), write("Kolv:"), writeList(L2).
 kolinit(L,L1,L2):-kol(L,L1,L2,[]).
 kol(_,[],L2,L2):-!.
 kol(L,[H|T],L2,Tmp):-count_el(H,L,C), append(Tmp,[C],L2new), kol(L,T,L2,L2new).
