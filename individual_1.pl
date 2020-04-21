@@ -7,4 +7,6 @@ st2(_,0,1,_,_):-!.
 st2(_,St,R,R,St):-!.
 st2(Os,St,X,R,I):-I<St, RN is R*Os, IN is I+1, st2(Os,St,X,RN,IN).
 
-pr(Os,X):-num(0,3,St),st(Os,St,X).
+all_st(X):-num(2,5,St),num(2,5,Os),st(Os,St,X).
+
+
