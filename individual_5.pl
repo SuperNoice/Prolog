@@ -22,3 +22,10 @@ kolinit(L,L1,L2):-kol(L,L1,L2,[]).
 kol(_,[],L2,L2):-!.
 kol(L,[H|T],L2,Tmp):-count_el(H,L,C), append(Tmp,[C],L2new), kol(L,T,L2,L2new).
 
+prov(In,K1,K2):-listofkolunic(In,Out),count_el(1,Out,Count1),K1=Count1,count_el(2,Out,Count2),K2=Count2.
+
+start(8):-tell('c:\\Users\\Super\\Desktop\\word_out.txt'),
+    lit(X1),lit(X2),lit(X3),lit(X4),lit(X5),lit(X6),lit(X7),lit(X8),
+    prov([X1,X2,X3,X4,X5,X6,X7,X8],0,4),
+    write(X1),write(X2),write(X3),write(X4),write(X5),write(X6),write(X7),write(X8),nl,fail.
+start(8):-!,told.
