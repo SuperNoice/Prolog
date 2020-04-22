@@ -5,21 +5,10 @@ subject(fr).
 subject(eng).
 subject(geo).
 
-num(1).
-num(2).
-num(3).
-num(4).
-
-:-dynamic teacherConfirm/2.
-
-writeTeach(Name):-teacher(Name,S),write(S," "),fail.
-writeTeach(_):-!.
+:-dynamic mem/2.
+:-dynamic teacher/2.
 
 both(Subj1, Subj2):-teacher(Teach,Subj1),teacher(Teach,Subj2).
-
-nosubj(Name,Subj):-teacher(Name,Subj).
-
-myassert(Name,Subj,Subj2):-retractall(teacher(_,_)), assert(teacher(Name,Subj)),assert(teacher(Name,Subj2)).
 
 soch(X,Y):-subject(X), subject(Y), not(X=Y).
 
@@ -36,8 +25,10 @@ gen:-assert(teacher(0,0)), soch(Sm1,Sm2), soch(St1,St2), soch(Sv1,Sv2), prov(Sm1
     assert(teacher(vas,Sv1)), assert(teacher(vas,Sv2)).
 gen:-!,retractall(teacher(_,_)),fail.
 
-main:-gen, not(both(geo,fr)), not(both(bio,math)), not(teacher(mor,bio)),
-    not(teacher(tok,bio)),not(teacher(tok,fr)), not(teacher(mor,math)),not(teacher(mor,eng)).
+start:-assert(mem(0,0)), st, fail.   %Главная функция
+start:-retractall(mem(_,_)).
 
-test:-gen,teacher(X,Y),write(X),write("-"),write(Y),nl,fail.
-test.
+st:-gen, teacher(P1,P2),not(mem(P1,P2)), not(both(geo,fr)), not(both(bio,math)), not(teacher(mor,bio)),
+    not(teacher(tok,bio)),not(teacher(tok,fr)), not(both(bio,fr)), not(teacher(mor,math)),not(teacher(mor,eng)), not(both(eng,math)),
+    teacher(X,Y),assert(mem(X,Y)),write(X),write("-"),write(Y),nl.
+
