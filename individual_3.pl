@@ -1,4 +1,4 @@
-st:-see('c:\\Users\\Super\\Desktop\\file.txt'), tell('c:\\Users\\Super\\Desktop\\out.txt'), in, seen, told.
+st:-see('.\\in.txt'), tell('.\\out.txt'), in, seen, told.
 
 in:-read(In),not(In=end_of_file),calc(In),in,fail.
 in:-!.
