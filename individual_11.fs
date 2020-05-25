@@ -22,7 +22,8 @@ let buttonclick _ =
         textbox.Text<-"Поставлены оба флажка"
     if (flag1.Checked=false && flag2.Checked=false) then
         textbox.Text<-"Флажки не установлены"
-    form.Controls.Add(textbox)
+    form.Controls.Remove(textbox)
+	form.Controls.Add(textbox)
     |> ignore
 
 let _ = button.Click.Add(buttonclick)
